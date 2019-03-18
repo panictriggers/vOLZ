@@ -9,5 +9,15 @@
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		}
+	],
+	"TargetPlatforms": [
+		"Android",
+		"AllDesktop",
+		"HTML5",
+		"IOS",
+		"LinuxNoEditor",
+		"Lumin",
+		"MacNoEditor",
+		"WindowsNoEditor"
 	]
 }
