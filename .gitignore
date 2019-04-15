@@ -12,3 +12,12 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+.pri
+.pro
+.kdev4
+.code-workspace
+vOLZCodeCompletionFolders.txt
+vOLZCodeLitePreProcessor.txt
+.workspace
+CMakeLists.txt
+Makefile
