@@ -54,8 +54,11 @@ void AvOLZCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+
+	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AvOLZCharacter::Sprint);
 
 	PlayerInputComponent->BindAxis("MoveForward", this, &AvOLZCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AvOLZCharacter::MoveRight);
@@ -113,7 +116,7 @@ void AvOLZCharacter::MoveForward(float Value)
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X)/2;
 		AddMovementInput(Direction, Value);
 	}
 }
@@ -131,4 +134,16 @@ void AvOLZCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+void AvOLZCharacter::Sprint() {
+	// find out which way is right
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator YawRotation(0, Rotation.Yaw, 0);
+
+	// get right vector 
+	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+	// add movement in that direction
+	AddMovementInput(Direction, 375);
+
 }
