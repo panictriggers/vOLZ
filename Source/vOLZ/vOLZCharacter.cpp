@@ -25,13 +25,7 @@ AvOLZCharacter::AvOLZCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
-
-	// Configure character movement
-	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
-	GetCharacterMovement()->JumpZVelocity = 600.f;
-	GetCharacterMovement()->AirControl = 0.2f;
-
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	// Create a camera boom (pulls in towards the player if there is a collision)
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
@@ -39,9 +33,17 @@ AvOLZCharacter::AvOLZCharacter()
 	CameraBoom->bUsePawnControlRotation = true; // Rotate the arm based on the controller
 
 	// Create a follow camera
-	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
+		
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+	// Configure character movement
+	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->JumpZVelocity = 500.f;
+	GetCharacterMovement()->AirControl = 0.2f;
+	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+	SprintSpeedMultipier = 4.0f;
+	
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -59,7 +61,7 @@ void AvOLZCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInpu
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	PlayerInputComponent->BindAction("Sprint", IE_Pressed, this, &AvOLZCharacter::Sprint);
-
+	PlayerInputComponent->BindAction("Sprint", IE_Released, this, &AvOLZCharacter::StopSprint);
 	PlayerInputComponent->BindAxis("MoveForward", this, &AvOLZCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AvOLZCharacter::MoveRight);
 
@@ -116,7 +118,7 @@ void AvOLZCharacter::MoveForward(float Value)
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
-		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X)/2;
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
 }
@@ -137,13 +139,8 @@ void AvOLZCharacter::MoveRight(float Value)
 }
 
 void AvOLZCharacter::Sprint() {
-	// find out which way is right
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0, Rotation.Yaw, 0);
-
-	// get right vector 
-	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	// add movement in that direction
-	AddMovementInput(Direction, 375);
-
+	GetCharacterMovement()->MaxWalkSpeed *= SprintSpeedMultipier;
+}
+void AvOLZCharacter::StopSprint() {
+	GetCharacterMovement()->MaxWalkSpeed /= SprintSpeedMultipier;
 }

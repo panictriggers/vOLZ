@@ -20,7 +20,8 @@ class AvOLZCharacter : public ACharacter
 	class UCameraComponent* FollowCamera;
 public:
 	AvOLZCharacter();
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Character Movement: Walking")
+	float SprintSpeedMultipier = 4.0f;
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseTurnRate;
@@ -41,6 +42,7 @@ protected:
 	void MoveRight(float Value);
 
 	void Sprint();
+	void StopSprint();
 	/** 
 	 * Called via input to turn at a given rate. 
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
