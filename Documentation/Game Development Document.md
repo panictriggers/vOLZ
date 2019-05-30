@@ -21,10 +21,11 @@ vOLZ is based around one map: the school. The main goal is to let players enjoy 
 
 ## 2. Concepts
 ### 2.1 Scenery
-#### 2.1.1 Concept
+- [ ] Completed
+#### 2.i.a Concept
 The objective is to remake the school to scale. 
 
-#### 2.1.2 Requirements
+#### 2.i.b Requirements
 * Wall Textures
 * Door models
 * Floor textures
@@ -43,16 +44,17 @@ The objective is to remake the school to scale.
 * Ceiling (dropped)
 * Smoke detectors
 
-#### 2.1.3 Challenges
+#### 2.i.c Challenges
 * Time (5th July)
 	* Computer/C0ding Issues
 	* Updates
 	* IRL stuff
 
-### 2.2 Hide n Seek
-#### 2.2.1 Concept
+### 2.ii Hide n Seek
+- [ ] Completed
+#### 2.ii.a Concept
 The Hide n Seek minigame is based around the school map, where the players must hide in strategic areas inside and outside the building, while other players must find them. Once all players are found within a certain time the hunters win, If time runs out: the hiders win. For the hunters to find a hider, they must physically touch the hiders. The default Hide N Seek search time is 5 minutes for the time being. This will expand once the map gets bigger. To differentiate both, the hunters could start with a default color of red, and the hiders with the default color so not to attract attention.
-#### 2.2.2 Requirements
+#### 2.ii.a Requirements
 * Real-Time, synchronous multi-player structure.
 * Messy level design, with different actors scattered around the school for more effective strategic ways of hiding.
 * Grabbing objects
@@ -68,7 +70,7 @@ The Hide n Seek minigame is based around the school map, where the players must 
 * Spectator mode
 * Death animations?
 * Toggle FP and TP
-#### 2.2.3 Ruleset
+#### 2.ii.c Ruleset
 ##### Hunters
 Description: Hunt the hiders.
 Can move props, can locate by sound (closer = higher pitch). Cooldown of 20 seconds.
@@ -77,13 +79,14 @@ Can move props, can locate by sound (closer = higher pitch). Cooldown of 20 seco
 Description: Hides from the hiders
 Can move props, can boost their movement speed by a factor of 2.5 for 1.5s to outrun the hunters. Cooldown of 20 - 30 seconds.
 
-#### 2.2.4 Technical Challenges
+#### 2.ii.d Technical Challenges
 * 'Long' Code
 * Multiplayer stuff
 
-### 2.3 Walkaround
-#### 2.3.1 Concept
+### 2.iii Walkaround
+- [ ] Completed
+#### 2.iii.a Concept
 The player may freely explore the map, on it's own with or without other players. No games, just enjoying.
-#### 2.3.2 Requirements
+#### 2.iii.b Requirements
 * Multiplayer
 * HUD (with minimap?)
