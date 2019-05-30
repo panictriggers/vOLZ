@@ -53,7 +53,7 @@ The objective is to remake the school to scale.
 ### 2.ii Hide n Seek
 - [ ] Completed
 #### 2.ii.a Concept
-The Hide n Seek minigame is based around the school map, where the players must hide in strategic areas inside and outside the building, while other players must find them. Once all players are found within a certain time the hunters win, If time runs out: the hiders win. For the hunters to find a hider, they must physically touch the hiders. The default Hide N Seek search time is 5 minutes for the time being. This will expand once the map gets bigger. To differentiate both, the hunters could start with a default color of red, and the hiders with the default color so not to attract attention.
+The Hide n Seek minigame is based around the school map, where the players must hide in strategic areas inside and outside the building, while other players must find them. Once all players are found within a certain time the hunters win, If time runs out: the hiders win. For the hunters to find a hider, they must physically touch the hiders. The default Hide N Seek search time is 5 minutes for the time being. This will expand once the map gets bigger. To differentiate both, the hunters could start with a default color of red, and the hiders with the default color so not to attract attention. As an extra sub mode: Prop Hunt (still to be considered).
 #### 2.ii.a Requirements
 * Real-Time, synchronous multi-player structure.
 * Messy level design, with different actors scattered around the school for more effective strategic ways of hiding.

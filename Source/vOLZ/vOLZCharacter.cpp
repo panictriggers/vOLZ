@@ -41,7 +41,7 @@ AvOLZCharacter::AvOLZCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->JumpZVelocity = 450.f;
 	GetCharacterMovement()->AirControl = 0.2f;
-	GetCharacterMovement()->MaxWalkSpeed = 150.0f;
+	GetCharacterMovement()->MaxWalkSpeed = 600.0f;
 	SprintSpeedMultipier = 4.0f;
 	
 
@@ -51,6 +51,13 @@ AvOLZCharacter::AvOLZCharacter()
 
 //////////////////////////////////////////////////////////////////////////
 // Input
+
+void AvOLZCharacter::BeginPlay() {
+	Super::BeginPlay();
+
+	SetReplicates(true);
+	SetReplicateMovement(true);
+}
 
 void AvOLZCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -138,9 +145,10 @@ void AvOLZCharacter::MoveRight(float Value)
 	}
 }
 
+/* Not implementing this yet, this would require a custom CharacterMovementComponent */
 void AvOLZCharacter::Sprint() {
-	GetCharacterMovement()->MaxWalkSpeed *= SprintSpeedMultipier;
+	//GetCharacterMovement()->MaxWalkSpeed *= SprintSpeedMultipier;
 }
 void AvOLZCharacter::StopSprint() {
-	GetCharacterMovement()->MaxWalkSpeed /= SprintSpeedMultipier;
+	//GetCharacterMovement()->MaxWalkSpeed /= SprintSpeedMultipier;
 }

@@ -18,6 +18,8 @@ class AvOLZCharacter : public ACharacter
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
+
+	virtual void BeginPlay() override;
 public:
 	AvOLZCharacter();
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Character Movement: Walking")
