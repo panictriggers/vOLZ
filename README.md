@@ -1,5 +1,5 @@
 # vOLZ
-[![virtual Openbaar Lyceum Zeist](https://i.postimg.cc/3N0tKhnF/v-OLZ-logo.png)]
+![virtual Openbaar Lyceum Zeist Logo](https://i.postimg.cc/3N0tKhnF/v-OLZ-logo.png)
 
 
 **[virtual Openbaar Lyceum Zeist](https://olzexam.xyz)**, **vOLZ** for short, is an ambitious project to rebuild the entire school terrain in Unreal Engine 4 and let multiple users enjoy multiplayer multiple game modes. 
